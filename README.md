@@ -28,9 +28,9 @@ To install the application follow the instructions below:
 
 To run the application locally and access it in your browser, first set the `PORT` environment variable to the value of your choice. An example is shown below.
 
-	export PORT=3000
+	var PORT = process.env.PORT || 3000;
 	
-After the `PORT` environment variable has been set, run the Node.js application with the command below.
+After the `PORT` environment variable has been set, run the Node.js application with the command below. Note, the process.env.PORT is for deploying to Heroku, otherwise, 3000 will be the local host.
 
 	node server.js
 	
