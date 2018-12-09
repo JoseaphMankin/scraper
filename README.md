@@ -14,7 +14,7 @@ The application demonstrates the ability to use [Cherrio](https://www.npmjs.com/
 - What is the direct link to the project?
   * The code is hosted here: [Scraper](https://github.com/JoseaphMankin/scraper).
 
-![Alt text](/public/images/scraperScreen?raw=true "Scraper Screenshot")
+![Alt text](/public/images/scraperScreen.png?raw=true "Scraper Screenshot")
 
 ## Installation
 
