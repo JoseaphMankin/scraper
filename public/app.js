@@ -5,6 +5,7 @@ $.getJSON("/articles", function(data) {
     // Display the apropos information on the page
     // $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
     $("#articles").prepend(`
+    <div class="card">
     <p data-id='${data[i]._id}'>
     <b>Title: ${data[i].title}</b>
     <br>
@@ -12,6 +13,7 @@ $.getJSON("/articles", function(data) {
     <br>
     <a href='https://www.nhl.com${data[i].link}' target="_blank">Link to Article Here</a>
     </p>
+    </div>
     `);
   }
 });

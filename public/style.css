@@ -40,3 +40,7 @@ textarea {
 .container{
     background-color: lightgrey
 }
+
+.card{
+	border: 3px solid red;
+}
