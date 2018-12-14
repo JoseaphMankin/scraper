@@ -45,20 +45,22 @@ app.get("/scrape", function(req, res) {
 		// With cheerio, find each h4-tag with the class "headline-link" and loop through the results
 		$('h4.headline-link').each(function(i, element) {
 			// Save the text of the h4-tag as "title"
-			var title = $(element).text();
-
+      var title = $(element).text();
+      var summary = $(element).parent().children("h5").text()
+      // console.log("MY THING: " + summary)
 			// Find the h4 tag's parent a-tag, and save it's href value as "link"
 			var link = $(element)
 				.parent()
 				.attr('href');
-      array.push({title: title, link: link});
+      array.push({title: title, summary: summary, link: link});
       // Create a new Article using the `result` object built from scraping
       
     });
     db.Article.create(array)
         .then(function(dbArticle) {
           // View the added result in the console
-          console.log(dbArticle);
+          // console.log(dbArticle);
+         
           
         })
         .catch(function(err) {

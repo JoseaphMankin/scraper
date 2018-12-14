@@ -5,7 +5,7 @@ Week 18 Mongo and Cheerio Web Scraper Assignment
 
 App that scrapes articles from NHL.com and allows users to make notes on the articles they find.
 
-The application demonstrates the ability to use [Cherrio](https://www.npmjs.com/package/cheerio) to scrape data from a website and save to a [MongoDB](https://www.mongodb.com/) datablse
+The application demonstrates the ability to use [Cherrio](https://www.npmjs.com/package/cheerio) to scrape data from a website and save to a [MongoDB](https://www.mongodb.com/) database
 
 ## Demo
 	
