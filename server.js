@@ -29,8 +29,8 @@ app.use(express.static('public'));
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/nhlScraper';
 
-// mongoose.connect(MONGODB_URI);
-mongoose.connect('mongodb://localhost/nhlScraper', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGODB_URI);
+// mongoose.connect('mongodb://localhost/nhlScraper', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Routes
 
@@ -49,15 +49,15 @@ app.get('/scrape', function (req, res) {
 			// Save the text of the h4-tag as "title"
 			// var title = $(element).parent('h3').text();
 			var title = $(element).find('h3').text();
-			console.log(title);
+			// console.log(title);
 			var summary = $(element).find('p').text();
-			console.log(summary);
+			// console.log(summary);
 			// var summary = $(element).parent().children('p').text();
 			// console.log("MY THING: " + summary)
 			// Find the h4 tag's parent a-tag, and save it's href value as "link"
 			// var link = $(element).parent().attr('href');
 			var link = $(element).find('h3 a').attr('href');
-			console.log(link);
+			// console.log(link);
 			array.push({ title: title, summary: summary, link: link });
 			// Create a new Article using the `result` object built from scraping
 		});

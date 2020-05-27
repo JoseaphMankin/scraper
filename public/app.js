@@ -1,5 +1,6 @@
 // Grab the articles as a json
 $.getJSON('/articles', function (data) {
+	console.log('Fetching Articles');
 	// For each one
 	for (var i = 0; i < data.length; i++) {
 		// Display the apropos information on the page
