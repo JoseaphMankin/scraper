@@ -1,17 +1,25 @@
 {
-  "name": "mongoose_skeleton",
+  "name": "scraper",
   "version": "1.0.0",
-  "description": "",
+  "description": "Week 18 Mongo and Cheerio Web Scraper Assignment",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "watch": "nodemon server.js"
+    "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseaphMankin/scraper.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseaphMankin/scraper/issues"
+  },
+  "homepage": "https://github.com/JoseaphMankin/scraper#readme",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "mongoose": "^5.9.16",
