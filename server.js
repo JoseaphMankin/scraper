@@ -29,7 +29,12 @@ app.use(express.static('public'));
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/nhlScraper';
 
-mongoose.connect(MONGODB_URI);
+if (process.env.MONGODB_URI) {
+	mongoose.connect(MONGODB_URI);
+} else {
+	mongoose.connect('mongodb://localhost/nhlScraper', { useNewUrlParser: true, useUnifiedTopology: true });
+}
+
 // mongoose.connect('mongodb://localhost/nhlScraper', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Routes
@@ -38,29 +43,36 @@ mongoose.connect(MONGODB_URI);
 app.get('/scrape', function (req, res) {
 	console.log('Scraping!!');
 	// First, we grab the body of the html with axios
-	axios.get('http://www.thehockeynews.com').then(function (response) {
+	axios.get('http://www.nhl.com').then(function (response) {
 		// Then, we load that into cheerio and save it to $ for a shorthand selector
 		var $ = cheerio.load(response.data);
 		let array = [];
 
 		// With cheerio, find each h4-tag with the class "headline-link" and loop through the results
-		$('article.posts-grid--article').each(function (i, element) {
+		$('div.showcase__item').each(function (i, element) {
 			// console.log(element);
 			// Save the text of the h4-tag as "title"
 			// var title = $(element).parent('h3').text();
-			var title = $(element).find('h3').text();
-			// console.log(title);
-			var summary = $(element).find('p').text();
+			var title = $(element).find('h5.showcase__headline').text().trim();
+			console.log(title);
+			var summary = $(element).find('div.showcase__blurb').text().trim();
 			// console.log(summary);
 			// var summary = $(element).parent().children('p').text();
 			// console.log("MY THING: " + summary)
 			// Find the h4 tag's parent a-tag, and save it's href value as "link"
 			// var link = $(element).parent().attr('href');
-			var link = $(element).find('h3 a').attr('href');
-			// console.log(link);
-			array.push({ title: title, summary: summary, link: link });
+			var link = $(element).parent().attr('href');
+			var newLink = '';
+			console.log(link);
+			if (link.includes('www.nhl.com')) {
+				newLink = link;
+			} else {
+				newLink = 'https://www.nhl.com' + link;
+			}
+			array.push({ title: title, summary: summary, link: newLink });
 			// Create a new Article using the `result` object built from scraping
 		});
+
 		db.Article.create(array)
 			.then(function (dbArticle) {
 				// View the added result in the console

@@ -91,7 +91,7 @@ $(document).ready(function () {
 			// If we are able to successfully scrape the NYTIMES and compare the articles to those
 			// already in our collection, re render the articles on the page
 			// and let the user know how many unique articles we were able to save
-			initPage();
+			window.reload();
 		});
 	}
 });
