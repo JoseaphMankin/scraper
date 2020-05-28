@@ -9,21 +9,22 @@ $(document).ready(function () {
 			// Display the apropos information on the page
 			// $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
 			$('#articles').prepend(`
-    <div class="card">
-    <p data-id='${data[i]._id}'>
-    <b>Title: ${data[i].title}</b>
+    <div class="card" data-id='${data[i]._id}'>
+    <p>
+    <a href='${data[i].link}' target="_blank">
+    <b class='title'>${data[i].title}</b>
+    </a>
     <br>
-    Summary: ${data[i].summary}
-    <br>
-    <a href='${data[i].link}' target="_blank">Link to Article Here</a>
+    ${data[i].summary}
     </p>
+    <button class='noteBtn' data-id='${data[i]._id}'>**CLICK TO ADD NOTE**</button>
     </div>
     `);
 		}
 	});
 
 	// Whenever someone clicks a p tag
-	$(document).on('click', 'p', function () {
+	$(document).on('click', '.noteBtn', function () {
 		// Empty the notes from the note section
 		$('#notes').empty();
 		// Save the id from the p tag
@@ -88,9 +89,6 @@ $(document).ready(function () {
 	function handleArticleScrape() {
 		// This function handles the user clicking any "scrape new article" buttons
 		$.get('/scrape').then(function (data) {
-			// If we are able to successfully scrape the NYTIMES and compare the articles to those
-			// already in our collection, re render the articles on the page
-			// and let the user know how many unique articles we were able to save
 			window.location.reload();
 		});
 	}
